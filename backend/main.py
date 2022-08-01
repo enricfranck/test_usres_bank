@@ -6,6 +6,7 @@ from starlette.middleware.sessions import SessionMiddleware
 from app.apis.base import api_router
 from app.core.config import settings
 from app.db.base_class import Base
+from app.db.init_data import init_db
 from app.db.session import SessionLocal, engine
 
 
@@ -16,8 +17,8 @@ def include_router(app):
 def create_tables():  # new
     print("create_tables")
     Base.metadata.create_all(bind=engine)
-
     db = SessionLocal()
+    init_db(db)
 
 
 def start_application():

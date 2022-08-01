@@ -1,10 +1,11 @@
-from pydantic import BaseModel
-import typing as t
+from uuid import UUID
+
+from pydantic import BaseModel, EmailStr
 from typing import Optional
 
 
 class UserBase(BaseModel):
-    email: str
+    email: EmailStr
     is_active: bool = True
     is_admin: bool = False
     first_name: str = None
@@ -22,8 +23,12 @@ class UserCreate(UserBase):
         orm_mode = True
 
 
-class UserUpdate(UserBase):
-    password: t.Optional[str] = None
+class UserUpdate(BaseModel):
+    email: Optional[EmailStr]
+    is_admin: Optional[bool] = False
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
+    password: Optional[str] = None
 
     class Config:
         orm_mode = True
