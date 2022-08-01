@@ -1,0 +1,27 @@
+uvicorn
+fastapi~=0.78.0
+#for template
+jinja2
+#for static files
+aiofiles
+#for database
+sqlalchemy==1.3.23
+psycopg2-binary
+#for loading environment variables
+python-dotenv~=0.20.0
+#for email validation
+pydantic[email]~=1.9.1
+#hashing
+passlib[bcrypt]~=1.7.4
+#for testing
+pytest~=7.1.2
+requests
+#for jwt tokens
+python-jose
+#for  cleaning up codebase on each commit
+pre-commit
+
+#for accessing form data       
+python-multipart
+httpx==0.15.5
+itsdangerous==1.1.0
