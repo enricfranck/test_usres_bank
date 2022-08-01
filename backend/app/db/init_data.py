@@ -7,10 +7,10 @@ from app.schemas.users import UserCreate
 
 
 def init_db(db: Session) -> None:
-
     user = crud.user.get_user_by_email(db=db, email=os.getenv("ADMIN_EMAIL"))
     if not user:
         user_in = UserCreate(
+            account_number="00000001",
             username=os.getenv("ADMIN_EMAIL"),
             email=os.getenv("ADMIN_EMAIL"),
             password=os.getenv("ADMIN_PASSWORD"),
