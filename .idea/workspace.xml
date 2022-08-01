@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa754c5a-5fc4-455f-a97a-7623516c74b1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/app/apis/api_v1/route_users.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/apis/base.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/core/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/core/security.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/crud/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/crud/base.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/crud/users.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/db/base.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/db/base_class.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/db/session.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/models/users.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/schemas/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/schemas/users.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
