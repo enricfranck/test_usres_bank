@@ -23,5 +23,5 @@ pre-commit
 
 #for accessing form data       
 python-multipart
-httpx==0.15.5
+pyjwt==1.7.1
 itsdangerous==1.1.0

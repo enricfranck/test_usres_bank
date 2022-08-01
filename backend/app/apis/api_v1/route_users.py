@@ -1,10 +1,11 @@
 from typing import List
 
 from fastapi import APIRouter, HTTPException
-from fastapi import Depends, Response
+from fastapi import Depends
 from sqlalchemy.orm import Session
 
 from app import crud, schemas
+from app.core.auth import get_current_active_admin
 from app.db.session import get_db
 from app.schemas.users import ShowUser
 
@@ -15,6 +16,7 @@ router = APIRouter()
 async def user_create(
         user_in: schemas.UserCreate,
         db=Depends(get_db),
+        current_user=Depends(get_current_active_admin),
 ):
     """
     Create a new user
@@ -32,16 +34,13 @@ async def user_create(
 
 @router.get("/", response_model=List[schemas.ShowUser], response_model_exclude_none=True, )
 async def users_list(
-        response: Response,
         db=Depends(get_db),
+        current_user=Depends(get_current_active_admin),
 ):
     """
     Get all users
     """
     users = crud.user.get_all_user(db=db)
-
-    # This is necessary for react-admin to work
-    response.headers["Content-Range"] = f"0-9/{len(users)}"
     return users
 
 
@@ -53,15 +52,13 @@ async def users_list(
 async def user_details(
         user_id: str,
         db=Depends(get_db),
+        current_user=Depends(get_current_active_admin),
 ):
     """
     Get any user details
     """
     user = crud.user.get(db=db, id=user_id)
     return user
-    # return encoders.jsonable_encoder(
-    #     user, skip_defaults=True, exclude_none=True,
-    # )
 
 
 @router.put(
@@ -71,6 +68,7 @@ async def user_edit(
         user_id: str,
         user_in: schemas.UserUpdate,
         db=Depends(get_db),
+        current_user=Depends(get_current_active_admin)
 ):
     """
     Update existing user
@@ -81,6 +79,11 @@ async def user_edit(
             status_code=400,
             detail="User not found.",
         )
+    if not user.is_active:
+        raise HTTPException(
+            status_code=400,
+            detail="Inactive user.",
+        )
     user = crud.user.update(db=db, db_obj=user, obj_in=user_in)
 
     return user
@@ -89,12 +92,22 @@ async def user_edit(
 @router.delete("/{user_id}", response_model=ShowUser)
 def delete_user(
         user_id: str,
-        db: Session = Depends(get_db), ):
+        db: Session = Depends(get_db),
+        current_user=Depends(get_current_active_admin)
+):
+    """
+    Delete the user
+    :param user_id:
+    :param db:
+    :param current_user:
+    :return: user
+    """
     user = crud.user.get(db=db, id=user_id)
     if not user:
         raise HTTPException(
             status_code=400,
             detail="User not found.",
         )
-    user = crud.user.remove(db=db, id=user_id)
+    user_in = schemas.UserUpdate(**{"is_active": False})
+    user = crud.user.update(db=db, db_obj=user, obj_in=user_in)
     return user
