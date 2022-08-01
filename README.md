@@ -1,6 +1,18 @@
 # test_users_bank
 
-
+For Starting the project:
+```bash
+git clone https://github.com/enricfranck/test_usres_bank.git
+```
+```bash
+cd backend
+```
+```bash
+pip3 install -r requirements.txt 
+```
+```bash
+python3 main.py
+```
 ## Project Layout
 
 ```
