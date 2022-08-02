@@ -4,6 +4,7 @@ from fastapi import APIRouter
 from fastapi import Depends
 from fastapi import HTTPException
 from fastapi import status
+from fastapi.encoders import jsonable_encoder
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 
@@ -22,6 +23,14 @@ def create_Transaction(
         db: Session = Depends(get_db),
         current_user: User = Depends(get_current_user),
 ):
+    user = crud.user.get_user_by_email(db=db, email=current_user.email)
+    user = schemas.ShowUser(**jsonable_encoder(user))
+    account = crud.account.read_account_by_user_id(db=db, user_id=user.id)
+    if not account:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"this user don't have account",
+        )
     transactions = crud.transaction.create(obj_in=transactions, db=db, account_id=current_user.id)
     return transactions
 
@@ -31,12 +40,12 @@ def create_Transaction(
 )
 def read_Transaction(db: Session = Depends(get_db),
                      current_user: User = Depends(get_current_user)):
-    transactions = crud.transaction.red_transaction_by_owner(account_id=current_user.account_id, db=db)
-    if not transactions:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Transaction with this id {current_user.account_id} does not exist",
-        )
+    user = crud.user.get_user_by_email(db=db, email=current_user.email)
+    user = schemas.ShowUser(**jsonable_encoder(user))
+    account = crud.account.read_account_by_user_id(db=db, user_id=user.id)
+    transactions = []
+    if account:
+        transactions = crud.transaction.red_transaction_by_owner(account_id=account.id, db=db)
     return transactions
 
 

@@ -16,6 +16,10 @@ class UserCreate(UserBase):
     password: str
 
 
+class UserLogin(BaseModel):
+    email: EmailStr
+
+
 class UserDelete(BaseModel):
     is_active: bool = True
 
@@ -42,6 +46,7 @@ class ShowUser(UserBase):
     bank_id: Optional[int]
     id: Optional[str]
     account_id: Optional[int]
+    account_type: Optional[str]
 
     class Config:
         orm_mode = True
