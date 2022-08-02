@@ -2,28 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa754c5a-5fc4-455f-a97a-7623516c74b1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/app/crud/bank.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/models/bank.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/models/user.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/schemas/account.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/schemas/bank.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/environement.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/crud/account.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/apis/api_v1/route_login.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/apis/api_v1/route_login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plan_project_bank_users.pdf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/apis/api_v1/route_transaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/apis/api_v1/route_transaction.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/apis/api_v1/route_users.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/apis/api_v1/route_users.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/core/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/core/auth.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/crud/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/crud/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/crud/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/crud/users.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/db/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/db/base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/db/init_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/db/init_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/crud/transaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/crud/transaction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/models/account.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/models/account.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/models/transaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/models/transaction.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/models/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/models/account.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/schemas/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/schemas/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/schemas/token.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/schemas/token.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/schemas/account.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/schemas/account.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/schemas/transaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/schemas/transaction.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/schemas/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/schemas/users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/environement.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend" beforeDir="false" afterPath="$PROJECT_DIR$/frontend" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />

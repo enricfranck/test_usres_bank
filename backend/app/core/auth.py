@@ -1,5 +1,6 @@
 import jwt
 from fastapi import Depends, HTTPException, status
+from fastapi.encoders import jsonable_encoder
 from jwt import PyJWTError
 
 from app.db import session

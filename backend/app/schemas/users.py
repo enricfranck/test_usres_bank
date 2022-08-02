@@ -35,10 +35,13 @@ class UserUpdate(BaseModel):
 
 
 class ShowUser(UserBase):
+    email: Optional[EmailStr]
+    address: Optional[str]
     first_name: Optional[str]
     last_name: Optional[str]
-    bank_id: int
+    bank_id: Optional[int]
     id: Optional[str]
+    account_id: Optional[int]
 
     class Config:
         orm_mode = True
