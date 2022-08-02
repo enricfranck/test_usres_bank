@@ -6,32 +6,32 @@ from pydantic import BaseModel
 
 # shared properties
 class TransactionBase(BaseModel):
-    debit: Optional[float] = None
-    credit: Optional[float] = None
-    description: Optional[str] = None
+    transaction_reference: Optional[str]
+    transaction_type: Optional[str]
+    amount: Optional[float]
+    transaction_date: Optional[date]
 
 
 # this will be used to validate data while creating a Transaction
 class TransactionCreate(TransactionBase):
-    debit: Optional[str]
-    credit: Optional[str]
-    description: Optional[str]
+    transaction_reference: str
+    transaction_type: str
+    amount: float
+    transaction_date: date
 
 
 class TransactionUpdate(BaseModel):
-    debit: Optional[str]
-    credit: Optional[str]
-    description: Optional[str]
+    pass
 
 
 # this will be used to format the response to not have id,owner_id etc
 class ShowTransaction(TransactionBase):
-    id: Optional[str]
-    debit: Optional[str]
-    credit: Optional[str]
-    date: Optional[date]
-    description: Optional[str]
-    owner_id: str
+    id: int
+    transaction_reference: Optional[str]
+    transaction_type: str
+    amount: float
+    transaction_date: date
+    account_id: int
 
     class Config():  # to convert non dict obj to json
         orm_mode = True

@@ -10,7 +10,7 @@ from sqlalchemy.orm import Session
 from app import schemas, crud
 from app.core.auth import get_current_user, get_current_active_admin
 from app.db.session import get_db
-from app.models.users import User
+from app.models.user import User
 
 router = APIRouter()
 templates = Jinja2Templates(directory="templates")

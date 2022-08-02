@@ -12,8 +12,9 @@ from app.schemas.users import ShowUser
 router = APIRouter()
 
 
-@router.post("/", response_model=schemas.ShowUser, response_model_exclude_none=True)
+@router.post("/{bank_id}", response_model=schemas.ShowUser, response_model_exclude_none=True)
 async def user_create(
+        bank_id: int,
         user_in: schemas.UserCreate,
         db=Depends(get_db),
         current_user=Depends(get_current_active_admin),
@@ -21,13 +22,19 @@ async def user_create(
     """
     Create a new user
     """
+    bank = crud.bank.red_bank_by_id(db=db, id=bank_id)
+    if not bank:
+        raise HTTPException(
+            status_code=400,
+            detail="Bank not found.",
+        )
     user = crud.user.get_user_by_email(db=db, email=user_in.email)
     if user:
         raise HTTPException(
             status_code=400,
             detail="The user with this email already exists in the system.",
         )
-    user = crud.user.create_user(db=db, obj_in=user_in)
+    user = crud.user.create_user(db=db, obj_in=user_in, bank_id=bank.id)
 
     return user
 
@@ -108,6 +115,6 @@ def delete_user(
             status_code=400,
             detail="User not found.",
         )
-    user_in = schemas.UserUpdate(**{"is_active": False})
+    user_in = schemas.UserDelete(**{"is_active": False})
     user = crud.user.update(db=db, db_obj=user, obj_in=user_in)
     return user

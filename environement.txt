@@ -1,0 +1,16 @@
+# server address
+SERVER_HOST=192.168.88.33
+# hashing key
+SECRET_KEY=supersecretkey!!!!
+# postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_SERVER=localhost
+POSTGRES_PORT=5432
+POSTGRES_DB=user_bank
+# pgadmin
+PGADMIN_DEFAULT_EMAIL=pgadmin4@test.com
+PGADMIN_DEFAULT_PASSWORD=pgadmin4
+# admin
+ADMIN_EMAIL=adminbank@test.com
+ADMIN_PASSWORD=adminbank

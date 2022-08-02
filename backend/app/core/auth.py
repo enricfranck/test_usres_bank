@@ -22,8 +22,7 @@ async def get_current_user(
         email: str = payload.get("sub")
         if email is None:
             raise credentials_exception
-        permissions: str = payload.get("permissions")
-        token_data = schemas.TokenData(email=email, permissions=permissions)
+        token_data = schemas.TokenData(email=email)
     except PyJWTError:
         raise credentials_exception
     user = crud.user.get_user_by_email(db=db, email=token_data.email)
