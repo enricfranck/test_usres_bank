@@ -1,2 +1,5 @@
 /venv
 .env
+/frontend/node_modules
+/.pytest_cache
+/__pycache__
