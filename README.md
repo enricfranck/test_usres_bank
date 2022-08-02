@@ -1,9 +1,11 @@
 # test_users_bank
 
-For Starting the Backend:
+Clone this project
 ```bash
 git clone https://github.com/enricfranck/test_usres_bank.git
 ```
+For starting the Backend:
+
 ```bash
 cd backend
 ```
@@ -31,3 +33,30 @@ backend
     ├── schemas # project schemas
     ├── tests   # pytest
     └── main.py # entrypoint to backend
+```
+For starting the Frontend:
+```bash
+cd frontend
+```
+```bash
+yarn install
+```
+```bash
+yarn start
+```
+
+
+Navigate to : http://localhost:3000
+```
+frontend
+└── node_modules
+└── public
+└── src
+    ├── admin
+    ├── config  # the api root
+    ├── component
+    ├── user    
+    ├── App.js  
+    ├── App.test.js 
+    ├── index.css   
+```
