@@ -59,9 +59,11 @@ async def users_list(
     for user in users:
         user = schemas.ShowUser(**jsonable_encoder(user))
         account = crud.account.read_account_by_user_id(db=db, user_id=user.id)
-        if account:
-            user.account_id = account.id
-            list_user.append(user)
+        if user.is_active:
+            account = crud.account.read_account_by_user_id(db=db, user_id=user.id)
+            if account:
+                user.account_id = account.id
+                list_user.append(user)
     return list_user
 
 
@@ -110,7 +112,7 @@ async def user_edit(
     return user
 
 
-@router.delete("/{user_id}", response_model=ShowUser)
+@router.delete("/{user_id}", response_model=List[schemas.ShowUser])
 def delete_user(
         user_id: str,
         db: Session = Depends(get_db),
@@ -131,4 +133,13 @@ def delete_user(
         )
     user_in = schemas.UserDelete(**{"is_active": False})
     user = crud.user.update(db=db, db_obj=user, obj_in=user_in)
-    return user
+    users = crud.user.get_all_user(db=db)
+    list_user = []
+    for user in users:
+        user = schemas.ShowUser(**jsonable_encoder(user))
+        if user.is_active:
+            account = crud.account.read_account_by_user_id(db=db, user_id=user.id)
+            if account:
+                user.account_id = account.id
+                list_user.append(user)
+    return list_user

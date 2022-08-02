@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "@mui/lab": "^5.0.0-alpha.93",
-    "@mui/x-data-grid": "^5.15.0",
-    "jwt-decode": "^3.1.2",
-    "react-router-dom": "^6.3.0"
-  }
-}
