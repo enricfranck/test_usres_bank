@@ -16,7 +16,7 @@ class CRUDUsers(CRUDBase[User, UserCreate, UserUpdate]):
     """
     this class extends the CRUDBase for not create all action of the crud
     """
-    def create_user(self, obj_in: UserCreate, db: Session) -> User:
+    def create_user(self, obj_in: UserCreate, db: Session, bank_id: int) -> User:
         """
         create User
         :param obj_in:
@@ -25,14 +25,14 @@ class CRUDUsers(CRUDBase[User, UserCreate, UserUpdate]):
         """
         hashed_password = get_password_hash(obj_in.password)
         db_user = User(
-            id=str(uuid.uuid4()),
             first_name=obj_in.first_name,
             last_name=obj_in.last_name,
             email=obj_in.email,
             is_active=obj_in.is_active,
             is_admin=obj_in.is_admin,
-            account_number=obj_in.account_number,
+            address=obj_in.address,
             hashed_password=hashed_password,
+            bank_id=bank_id,
         )
         db.add(db_user)
         db.commit()

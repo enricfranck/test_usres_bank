@@ -2,7 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa754c5a-5fc4-455f-a97a-7623516c74b1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/app/crud/account.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plan_project_bank_users.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/apis/api_v1/route_transaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/apis/api_v1/route_transaction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/apis/api_v1/route_users.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/apis/api_v1/route_users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/core/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/core/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/crud/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/crud/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/crud/transaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/crud/transaction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/models/account.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/models/account.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/models/transaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/models/transaction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/schemas/account.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/schemas/account.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/schemas/transaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/schemas/transaction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/schemas/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/schemas/users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/environement.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend" beforeDir="false" afterPath="$PROJECT_DIR$/frontend" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,16 +49,16 @@
     "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/macbookpro/PycharmProjects/test_usres_bank/backend"
+    "last_opened_file_path": "/Users/macbookpro/PycharmProjects/test_usres_bank/backend/app/crud"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/backend" />
-      <recent name="$PROJECT_DIR$/backend/app/apis/api_v1" />
       <recent name="$PROJECT_DIR$/backend/app/crud" />
       <recent name="$PROJECT_DIR$/backend/app/schemas" />
       <recent name="$PROJECT_DIR$/backend/app/models" />
+      <recent name="$PROJECT_DIR$/backend" />
+      <recent name="$PROJECT_DIR$/backend/app/apis/api_v1" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/backend" />

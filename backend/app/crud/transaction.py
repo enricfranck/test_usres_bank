@@ -12,7 +12,7 @@ class CRUDTransactions(CRUDBase[Transaction, TransactionCreate, TransactionUpdat
     """
     this class extends the CRUDBase for not create all action of the crud
     """
-    def create(self, obj_in: TransactionCreate, db: Session, owner_id: int):
+    def create(self, obj_in: TransactionCreate, db: Session, account_id: int):
         """
         Create transaction
         :param obj_in:
@@ -20,20 +20,20 @@ class CRUDTransactions(CRUDBase[Transaction, TransactionCreate, TransactionUpdat
         :param owner_id:
         :return:
         """
-        transaction_object = Transaction(**obj_in.dict(), owner_id=owner_id, id=str(uuid.uuid4()), date=datetime.now())
+        transaction_object = Transaction(**obj_in.dict(), account_id=account_id, transaction_date=datetime.now())
         db.add(transaction_object)
         db.commit()
         db.refresh(transaction_object)
         return transaction_object
 
-    def red_transaction_by_owner(self, owner_id: str, db: Session):
+    def red_transaction_by_owner(self, account_id: str, db: Session):
         """
         read transaction by owner
-        :param owner_id:
+        :param account_id:
         :param db:
         :return:
         """
-        item = db.query(Transaction).filter(Transaction.owner_id == owner_id).all()
+        item = db.query(Transaction).filter(Transaction.account_id == account_id).all()
         return item
 
     def list_transactions(self, db: Session):
