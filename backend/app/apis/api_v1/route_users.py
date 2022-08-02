@@ -39,10 +39,10 @@ async def user_create(
         )
     user_ = crud.user.create_user(db=db, obj_in=user_in, bank_id=bank.id)
     user = schemas.ShowUser(**jsonable_encoder(user_))
-    print(jsonable_encoder(user_))
     account_in = schemas.AccountCreate(account_type=account_type, created_at=datetime.datetime.now())
     account = crud.account.create(db=db, obj_in=account_in, user_id=user_.id)
     user.account_id = account.id
+    user.account_type = account.account_type
     return user
 
 
@@ -63,7 +63,25 @@ async def users_list(
             account = crud.account.read_account_by_user_id(db=db, user_id=user.id)
             if account:
                 user.account_id = account.id
+                user.account_type = account.account_type
+                print(user)
                 list_user.append(user)
+    return list_user
+
+
+@router.get("/for_login", response_model=List[schemas.UserLogin], response_model_exclude_none=True, )
+async def users_list(
+        db=Depends(get_db),
+):
+    """
+    Get all users
+    """
+    users = crud.user.get_all_user(db=db)
+    list_user = []
+    for user in users:
+        user = schemas.ShowUser(**jsonable_encoder(user))
+        if user.is_active:
+            list_user.append(user)
     return list_user
 
 
@@ -81,7 +99,13 @@ async def user_details(
     Get any user details
     """
     user = crud.user.get(db=db, id=user_id)
-    return user
+    if user.is_active:
+        user = schemas.ShowUser(**jsonable_encoder(user))
+        account = crud.account.read_account_by_user_id(db=db, user_id=user.id)
+        if account:
+            user.account_id = account.id
+            user.account_type = account.account_type
+            return user
 
 
 @router.put(
