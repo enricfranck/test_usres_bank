@@ -10,8 +10,8 @@ class UserBase(BaseModel):
     account_number: str
     is_active: bool = True
     is_admin: bool = False
-    first_name: str = None
-    last_name: str = None
+    first_name: str = ""
+    last_name: str = ""
 
 
 class UserOut(UserBase):
