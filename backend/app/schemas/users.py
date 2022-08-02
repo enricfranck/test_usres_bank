@@ -7,8 +7,8 @@ class UserBase(BaseModel):
     email: EmailStr
     is_active: bool = True
     is_admin: bool = False
-    first_name: str = ""
-    last_name: str = ""
+    first_name: str
+    last_name: str
     address: str
 
 
