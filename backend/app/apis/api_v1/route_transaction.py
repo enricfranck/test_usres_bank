@@ -35,6 +35,28 @@ def create_Transaction(
     return transactions
 
 
+@router.post("/{email}", response_model=schemas.ShowTransaction)
+def create_Transaction(
+        transactions: schemas.TransactionCreate,
+        db: Session = Depends(get_db),
+        email: str = "current",
+        current_user: User = Depends(get_current_user),
+):
+    if email == "current":
+        user = crud.user.get_user_by_email(db=db, email=current_user.email)
+    else:
+        user = crud.user.get_user_by_email(db=db, email=email)
+    user = schemas.ShowUser(**jsonable_encoder(user))
+    account = crud.account.read_account_by_user_id(db=db, user_id=user.id)
+    if not account:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"this user don't have account",
+        )
+    transactions = crud.transaction.create(obj_in=transactions, db=db, account_id=account.id)
+    return transactions
+
+
 @router.get(
     "/me", response_model=List[schemas.ShowTransaction]
 )
@@ -50,17 +72,43 @@ def read_Transaction(db: Session = Depends(get_db),
 
 
 @router.get(
-    "/{id}", response_model=schemas.ShowTransaction
+    "/balance", response_model=List[schemas.Balance]
+)
+def read_Transaction(db: Session = Depends(get_db),
+                     current_user: User = Depends(get_current_user)):
+    user = crud.user.get_user_by_email(db=db, email=current_user.email)
+    account = crud.account.read_account_by_user_id(db=db, user_id=user.id)
+    transactions_ = []
+    if account:
+        transactions = crud.transaction.red_transaction_by_owner(account_id=account.id, db=db)
+        for transaction in transactions:
+            transaction = schemas.Balance(**jsonable_encoder(transaction))
+            if transaction.transaction_type == "Deposit":
+                transaction.debit = transaction.amount
+            else:
+                transaction.credit = transaction.amount
+            transactions_.append(transaction)
+    return transactions_
+
+
+@router.get(
+    "/{id}", response_model=schemas.TransactionDetails
 )  # if we keep just "{id}" . it would stat catching all routes
 def read_Transaction(id: str, db: Session = Depends(get_db),
                      current_user=Depends(get_current_active_admin)):
-    transactions = crud.transaction.get(id=id, db=db)
-    if not transactions:
+    transaction = crud.transaction.get(id=id, db=db)
+    if not transaction:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Transaction with this id {id} does not exist",
         )
-    return transactions
+
+    account = crud.account.get(db=db, id=transaction.account_id)
+    if account:
+        user = crud.user.get(db=db, id=account.user_id)
+
+        transaction = schemas.TransactionDetails(**jsonable_encoder(transaction), user=jsonable_encoder(user))
+    return transaction
 
 
 @router.get("/", response_model=List[schemas.ShowTransaction])

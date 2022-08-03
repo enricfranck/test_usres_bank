@@ -5,10 +5,12 @@ from fastapi import APIRouter, HTTPException
 from fastapi import Depends
 from fastapi.encoders import jsonable_encoder
 from sqlalchemy.orm import Session
+from starlette import status
 
 from app import crud, schemas
-from app.core.auth import get_current_active_admin
+from app.core.auth import get_current_active_admin, get_current_user
 from app.db.session import get_db
+from app.models import User
 from app.schemas.users import ShowUser
 
 router = APIRouter()
@@ -69,39 +71,62 @@ async def users_list(
     return list_user
 
 
-@router.get("/for_login", response_model=List[schemas.UserLogin], response_model_exclude_none=True, )
+@router.get("/user", response_model=List[schemas.UserLogin], response_model_exclude_none=True, )
 async def users_list(
         db=Depends(get_db),
+        current_user: User = Depends(get_current_user)
 ):
     """
-    Get all users
+    Get all for free
     """
     users = crud.user.get_all_user(db=db)
     list_user = []
     for user in users:
         user = schemas.ShowUser(**jsonable_encoder(user))
-        if user.is_active:
+        if user.is_active and not user.is_admin and user.email != current_user.email:
             list_user.append(user)
     return list_user
 
 
+@router.get("/{type_}", response_model=List[schemas.UserLogin], response_model_exclude_none=True, )
+async def users_list(
+        db=Depends(get_db),
+        type_: str = "login",
+
+):
+    """
+    Get all for free
+    """
+    users = crud.user.get_all_user(db=db)
+    list_user = []
+    if type_ == "login":
+        for user in users:
+            user = schemas.ShowUser(**jsonable_encoder(user))
+            if user.is_active:
+                list_user.append(user)
+    return list_user
+
 @router.get(
-    "/{user_id}",
+    "/get_by_id",
     response_model=schemas.ShowUser,
-    response_model_exclude_none=True,
 )
-async def user_details(
-        user_id: str,
+def user_details(
+        id: int,
         db=Depends(get_db),
         current_user=Depends(get_current_active_admin),
 ):
     """
     Get any user details
     """
-    user = crud.user.get(db=db, id=user_id)
+    user = crud.user.get_user_by_id(db=db, user_id=id)
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Transaction with this id {id} does not exist",
+        )
     if user.is_active:
-        user = schemas.ShowUser(**jsonable_encoder(user))
         account = crud.account.read_account_by_user_id(db=db, user_id=user.id)
+        user = schemas.ShowUser(**jsonable_encoder(user))
         if account:
             user.account_id = account.id
             user.account_type = account.account_type
