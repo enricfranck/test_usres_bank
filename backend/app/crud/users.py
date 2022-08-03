@@ -49,6 +49,16 @@ class CRUDUsers(CRUDBase[User, UserCreate, UserUpdate]):
         user = db.query(User).filter(User.email == email).first()
         return user
 
+    def get_user_by_id(self, user_id: int, db: Session):
+        """
+        Read user by email
+        :param user_id:
+        :param db:
+        :return:
+        """
+        user = db.query(User).filter(User.id == user_id).first()
+        return user
+
     def update_user(
             self, db: Session, *, db_obj: User, obj_in: Union[UserUpdate, Dict[str, Any]]
     ) -> User:
