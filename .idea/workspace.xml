@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa754c5a-5fc4-455f-a97a-7623516c74b1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/apis/api_v1/route_transaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/apis/api_v1/route_transaction.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/apis/api_v1/route_users.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/apis/api_v1/route_users.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/core/security.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/core/security.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/crud/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/crud/base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/crud/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/crud/users.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/schemas/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/schemas/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/schemas/transaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/schemas/transaction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Procfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend" beforeDir="false" afterPath="$PROJECT_DIR$/frontend" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
@@ -57,8 +50,8 @@
       <recent name="$PROJECT_DIR$/backend/app/apis/api_v1" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/backend" />
+      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
