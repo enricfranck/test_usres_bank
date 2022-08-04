@@ -33,10 +33,13 @@ class UserUpdate(BaseModel):
     last_name: Optional[str] = None
     password: Optional[str] = None
     address: Optional[str] = None
+    account_type: Optional[str]
 
     class Config:
         orm_mode = True
 
+class AccountUpdate(BaseModel):
+    account_type: Optional[str]
 
 class ShowUser(UserBase):
     email: Optional[EmailStr]

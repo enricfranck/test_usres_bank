@@ -51,12 +51,13 @@ class CRUDUsers(CRUDBase[User, UserCreate, UserUpdate]):
 
     def get_user_by_id(self, user_id: int, db: Session):
         """
-        Read user by email
+        Read user by id
         :param user_id:
         :param db:
         :return:
         """
         user = db.query(User).filter(User.id == user_id).first()
+        print(user)
         return user
 
     def update_user(

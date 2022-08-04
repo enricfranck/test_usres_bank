@@ -75,7 +75,7 @@ export const getUserFree = async (type) => {
   const headers = {
     'Content-Type': 'application/json'
    }
-  const request = new Request(urlUsers+""+type, {
+  const request = new Request(urlUsers+"by_type/?type_="+type, {
     method: 'GET',
     headers: headers,
   });
@@ -90,6 +90,7 @@ export const getUserFree = async (type) => {
   }
 
   const data = await response.json();
+  console.log(response.status)
 
   if (response.status >= 400 && response.status < 500) {
     if (data.detail) {
@@ -166,7 +167,7 @@ export const getUserById = async (token, id) => {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' +token
    }
-  const request = new Request(urlUsers+""+id, {
+  const request = new Request(urlUsers+"by_id/"+id, {
     method: 'GET',
     headers: headers,
   });

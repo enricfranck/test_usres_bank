@@ -1,5 +1,5 @@
 import datetime
-from typing import List
+from typing import List, Any
 
 from fastapi import APIRouter, HTTPException
 from fastapi import Depends
@@ -88,7 +88,7 @@ async def users_list(
     return list_user
 
 
-@router.get("/{type_}", response_model=List[schemas.UserLogin], response_model_exclude_none=True, )
+@router.get("/by_type/", response_model=List[schemas.UserLogin], response_model_exclude_none=True, )
 async def users_list(
         db=Depends(get_db),
         type_: str = "login",
@@ -106,31 +106,32 @@ async def users_list(
                 list_user.append(user)
     return list_user
 
+
 @router.get(
-    "/get_by_id",
-    response_model=schemas.ShowUser,
+    "/by_id/{user_id}",
+    response_model=Any,
 )
 def user_details(
-        id: int,
+        user_id: int,
         db=Depends(get_db),
-        current_user=Depends(get_current_active_admin),
-):
+        current_user: User = Depends(get_current_user)
+) -> Any:
     """
     Get any user details
     """
-    user = crud.user.get_user_by_id(db=db, user_id=id)
-    if not user:
+    users = crud.user.get(db=db, id=user_id)
+    if not users:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Transaction with this id {id} does not exist",
+            detail=f"Transaction with this id {user_id} does not exist",
         )
-    if user.is_active:
-        account = crud.account.read_account_by_user_id(db=db, user_id=user.id)
-        user = schemas.ShowUser(**jsonable_encoder(user))
+    if users.is_active:
+        account = crud.account.read_account_by_user_id(db=db, user_id=users.id)
+        user = schemas.ShowUser(**jsonable_encoder(users))
         if account:
             user.account_id = account.id
             user.account_type = account.account_type
-            return user
+    return user
 
 
 @router.put(
@@ -157,8 +158,27 @@ async def user_edit(
             detail="Inactive user.",
         )
     user = crud.user.update(db=db, db_obj=user, obj_in=user_in)
+    account = crud.account.read_account_by_user_id(db=db, user_id=user.id)
+    if account:
+        account_in = schemas.AccountUpdate(**{"account_type":user_in.account_type})
+        account = crud.account.update(db=db, db_obj=account, obj_in=account_in)
+        user = schemas.ShowUser(**jsonable_encoder(user))
+        user.account_id = account.id
+        user.account_type = account.account_type
+        return user
 
     return user
+
+
+@router.get("/me", response_model=schemas.ShowUser)
+def read_user_me(
+        db: Session = Depends(get_db),
+        current_user: User = Depends(get_current_user),
+) -> Any:
+    """
+    Get current user.
+    """
+    return current_user
 
 
 @router.delete("/{user_id}", response_model=List[schemas.ShowUser])

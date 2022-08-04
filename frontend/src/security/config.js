@@ -1,4 +1,5 @@
-const BACKEND_URLS = "http://localhost:8888/"
+//const BACKEND_URLS = "https://mysterious-earth-05578.herokuapp.com/"
+const BACKEND_URLS = "http://localhost:8000/"
 
 // the default password 
 export const defaultPassword = "adminbank"

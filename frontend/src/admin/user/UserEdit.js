@@ -72,6 +72,7 @@ export default function UserEdit() {
         "first_name": values.firstName,
         "last_name": values.lastName,
         "address": values.address,
+        "account_type": accountType,
         "is_active": values.active,
         "is_admin": values.admin,
         }
@@ -120,6 +121,7 @@ export default function UserEdit() {
       validEmail: false,
       validLastName: false,
       validAddress: false,
+      validAccountType: false,
       admin: data.is_admin,
       active: data.is_active
       
@@ -276,7 +278,9 @@ const validateField = (e) => {
           disablePortal
           id="account_type"
           options={accountTypes}
-          onChange={validationAccountType}
+          value={accountType}
+          onChange={validationAccountType} 
+          isOptionEqualToValue = {(option , value) => option.label == value.label}
           sx={{ width: '97%' , margin:1}}
           renderInput={(params) => <TextField {...params} label="Acount type" required error={validAccountType}  />}
         />

@@ -18,7 +18,7 @@ class AccountCreate(AccountBase):
 
 
 class AccountUpdate(BaseModel):
-    pass
+    account_type: Optional[str]
 
 
 class ShowAccount(AccountBase):

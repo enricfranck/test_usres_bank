@@ -188,7 +188,7 @@ const  Users =() => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Voulez-vous supprimer "}{userEmail}{"?"}
+          {"Do you want to remove "}{userEmail}{"?"}
         </DialogTitle>
         <DialogActions>
           <Button onClick={handleCancel}>Cancel</Button>
